@@ -69,13 +69,23 @@ class Controller {
         });
     }
 
+    doneButton() {
+        document.getElementById("todo-block").addEventListener("click", function (evt)
+        {
+            let id = evt.target.getAttribute('data-id'); // get id of clicked element
+            todoInstance.changeIsDone(id);
+            evt.stopPropagation();
+        });
+    }
+
     buttonsListeners() {
         this.onNewTodo();
         this.deleteAll();
         this.deleteCompleted();
         this.showAll();
         this.showCompleted();
-        this.showNotCompleted()
+        this.showNotCompleted();
+        this.doneButton();
     }
 
     renderList(view = ALL_TASK) {
@@ -175,7 +185,6 @@ let controller = new Controller(newTodoList);
 let todoInstance = new Todo();
 
 controller.buttonsListeners();
-todoInstance.changeIsDone();
 
 
 document.addEventListener('DOMContentLoaded', function (){

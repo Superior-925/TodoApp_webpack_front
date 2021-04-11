@@ -89,10 +89,6 @@ $filterButtonBorder: solid black 3px;
   font-size: 1.1em;
 }
 
-#delete-completed-button[button-display='display-none'] {
-  display: none;
-}
-
 #delete-all-button {
   display: flex;
   justify-content: center;
@@ -103,10 +99,6 @@ $filterButtonBorder: solid black 3px;
   border: solid black 3px;
   border-radius: 5px;
   font-size: 1.1em;
-}
-
-#delete-all-button[button-display='display-none'] {
-  display: none;
 }
 
 .todo-message[data-text-decoration='text-decoration'] {
@@ -132,10 +124,6 @@ $filterButtonBorder: solid black 3px;
   }
 }
 
-#show-all-todos-button[button-display='display-none'] {
-  display: none;
-}
-
 #show-completed-todos-button {
   height: 42px;
   width: 150px;
@@ -145,10 +133,6 @@ $filterButtonBorder: solid black 3px;
   &:focus {
     background-color: red;
   }
-}
-
-#show-completed-todos-button[button-display='display-none'] {
-  display: none;
 }
 
 #show-not-completed-todos-button {
@@ -161,11 +145,6 @@ $filterButtonBorder: solid black 3px;
     background-color: red;
   }
 }
-
-#show-not-completed-todos-button[button-display='display-none'] {
-  display: none;
-}
-
 
 .display-style-none {
   display: none;

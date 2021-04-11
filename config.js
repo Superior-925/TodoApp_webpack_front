@@ -1,7 +1,7 @@
 var config = {
   development: {
-    host: "devdemo",
-    port: "3333"
+    host: "localhost",
+    port: "5555"
   },
   production: {
     host: "devdemo",
@@ -9,7 +9,7 @@ var config = {
   },
   test: {
     host: "devdemo",
-    port: "5555"
+    port: "7777"
   }
 };
 

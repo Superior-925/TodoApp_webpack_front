@@ -5,7 +5,7 @@ class TodoList {
     }
 
     addTodo(newTodo) {
-        this.todos.push(newTodo);
+
         let dataPost = JSON.stringify(newTodo);
 
         fetch(`http://${config.development.host}:${config.development.port}/todos`, {
@@ -15,14 +15,17 @@ class TodoList {
                 'Content-Type': 'application/json'
             },
             body: dataPost
-        });
-
-        controller.renderList();
+        }).then(response => response.json())
+            .then(json => {
+                this.todos.push(new Todo(json.taskText, json._id, json.isDone));
+                showHideButtons();
+                controller.renderList();
+            });
     }
 
     deleteAllTodos() {
-        this.todos.length = 0;
 
+        this.todos.length = 0;
         fetch(`http://${config.development.host}:${config.development.port}/todos`, {
             method: 'delete',
             headers: {
@@ -32,6 +35,7 @@ class TodoList {
             body: ''
         });
         controller.renderList();
+        hideButtons();
     }
 
     deleteCompletedTodos() {
@@ -52,10 +56,7 @@ class TodoList {
             }
             arr = removeElementByStatus(arr, true);
             this.todos = arr;
-            controller.renderList();
         }
-
-        // request on server for deleting selected todos by sended ids
 
         fetch(`http://${config.development.host}:${config.development.port}/todos/ids`, {
             method: 'delete',
@@ -64,8 +65,9 @@ class TodoList {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(completedIds)
+        }).then(response => {
+            controller.renderList();
         });
-
         hideButtons();
     }
 
@@ -84,7 +86,6 @@ class TodoList {
                 console.error('Error:', error);
             });
     }
-
 
     findInstanceById(id) {
         return this.todos.find(todo => todo.id == id);
