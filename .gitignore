@@ -3,6 +3,8 @@ src/styles/style.css
 src/styles/style.css.map
 src/styles/.sass-cache/
 src/styles/.idea
+node_modules/
 .idea/
 dist/
+.DS_Store
 
