@@ -14,14 +14,18 @@ The application is written by HTML/CSS/JavaScript/WebPack
 
 # To launch the app, you need to:
 
- Create new directory and open terminal in this directory.
- Follow the next commands:
+ Open terminal and follow the next commands:
  
  - Clone the repository
 
   ```sh
  git clone https://github.com/Superior-925/TodoApp_webpack_front.git
  ```
+ - Go to project folder
+  ```sh
+ cd TodoApp_webpack_front
+ ```
+
  - Install python language
 
  ```sh
