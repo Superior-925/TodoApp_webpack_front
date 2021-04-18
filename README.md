@@ -10,7 +10,7 @@ The app allows:
 
 ## Application Technology Stack
 
-The application is written in HTML/CSS/JavaScript
+The application is written in HTML/CSS/JavaScript/WebPack
 
 # To launch the app, you need to:
 
