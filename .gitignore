@@ -1,7 +1,8 @@
 
-styles/style.css
-styles/style.css.map
-styles/.sass-cache/
-styles/.idea
+src/styles/style.css
+src/styles/style.css.map
+src/styles/.sass-cache/
+src/styles/.idea
 .idea/
+dist/
 

@@ -2,12 +2,19 @@ const ALL_TASK = 0;
 const NOT_COMPLETED_TASK = 1;
 const COMPLETED_TASK = 2;
 
+import TodoList from '../models/todoList';
+import Todo from '../models/todo';
+import {getRandomIntInclusive} from '../utils/utils';
+import {hideButtons} from "../utils/utils";
+import {showHideButtons} from "../utils/utils";
+
 class Controller {
     constructor(todoList) {
         this.todoList = todoList;
     };
 
     onNewTodo() {
+        //adding new todo
         let addToDoButton = document.getElementById("todo-button");
         addToDoButton.addEventListener('click', () => {
             let inputValue = document.getElementById("new-todo-input").value;
@@ -19,9 +26,9 @@ class Controller {
 
             let newTodo = new Todo(inputValue, id, false);
 
-            this.todoList.addTodo(newTodo);
-
-            showHideButtons();
+            this.todoList.addTodo(newTodo).then(() => {
+                this.renderList();
+            }).then(()=>{showHideButtons()});
         });
     };
 
@@ -32,8 +39,8 @@ class Controller {
         let deleteAllButton = document.getElementById('delete-all-button');
 
         deleteAllButton.addEventListener('click', () => {
-            this.todoList.deleteAllTodos();
-            showHideButtons();
+            this.todoList.deleteAllTodos().then(
+                this.renderList()).then(hideButtons());
         });
     }
 
@@ -41,7 +48,8 @@ class Controller {
         // deleting completed records in todos array
         let deleteCompletedButton = document.getElementById('delete-completed-button');
         deleteCompletedButton.addEventListener('click', () => {
-            this.todoList.deleteCompletedTodos();
+            this.todoList.deleteCompletedTodos().then(
+                this.renderList()).then(hideButtons());
         });
     }
 
@@ -70,11 +78,19 @@ class Controller {
     }
 
     doneButton() {
+        //changing "done/undone" status
         document.getElementById("todo-block").addEventListener("click", function (evt)
         {
-            let id = evt.target.getAttribute('data-id'); // get id of clicked element
-            todoInstance.changeIsDone(id);
+
             evt.stopPropagation();
+
+            let id = evt.target.getAttribute('data-id'); // get id of clicked element
+
+            let newStatus = newTodoList.findInstanceById(id);
+
+            newStatus.changeIsDone(id).then(()=>{
+                controller.renderList(ALL_TASK)
+            })
         });
     }
 
@@ -182,11 +198,14 @@ class Controller {
 
 let newTodoList = new TodoList();
 let controller = new Controller(newTodoList);
-let todoInstance = new Todo();
 
 controller.buttonsListeners();
 
-
 document.addEventListener('DOMContentLoaded', function (){
-    controller.todoList.refreshPage();
+    //adding todos on display after browser starting
+    controller.todoList.refreshPage().then(() => {
+        controller.renderList(ALL_TASK);
+    }).then(()=>{showHideButtons()})
 });
+
+export default controller;

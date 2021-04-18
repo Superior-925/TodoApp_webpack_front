@@ -14,20 +14,32 @@ The application is written in HTML/CSS/JavaScript
 
 # To launch the app, you need to:
 
- - Open app folder in terminal and run the following command:
+ Open app folder in terminal and run the following commands:
  
  ```sh
 $ sudo apt-get update
 $ sudo apt-get install python3.6
 ```
 
- - Compile SCSS to CSS run terminal command from folder "styles": 
+ - Install dependencies with NPM
  
  ```
- $ npx sass ./style.scss ./style.css
+ $ npm install
 ```
 
- - Launch the terminal from root of the applications folder and run the server by the following command:
+ - Build the project using webpack
+ 
+  ```
+  $ npm run build
+ ```
+
+Go to "dist" directory
+
+  ```
+  $ cd dist
+ ```
+
+ - Launch the applications
  ```sh
 python -m SimpleHTTPServer 8000
 ```

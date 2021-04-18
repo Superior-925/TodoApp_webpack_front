@@ -1,3 +1,6 @@
+import config from '../config'
+import Todo from './todo'
+
 
 class TodoList {
     constructor() {
@@ -8,7 +11,7 @@ class TodoList {
 
         let dataPost = JSON.stringify(newTodo);
 
-        fetch(`http://${config.development.host}:${config.development.port}/todos`, {
+        return fetch(`http://${config.development.host}:${config.development.port}/todos`, {
             method: 'post',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
@@ -17,25 +20,25 @@ class TodoList {
             body: dataPost
         }).then(response => response.json())
             .then(json => {
-                this.todos.push(new Todo(json.taskText, json._id, json.isDone));
-                showHideButtons();
-                controller.renderList();
+                this.todos.push(new Todo(json.taskText, json.id, json.isDone));
+            }).catch((error) => {
+                console.error('Error:', error);
             });
     }
 
     deleteAllTodos() {
 
         this.todos.length = 0;
-        fetch(`http://${config.development.host}:${config.development.port}/todos`, {
+        return fetch(`http://${config.development.host}:${config.development.port}/todos`, {
             method: 'delete',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json'
             },
             body: ''
+        }).catch((error) => {
+            console.error('Error:', error);
         });
-        controller.renderList();
-        hideButtons();
     }
 
     deleteCompletedTodos() {
@@ -58,29 +61,26 @@ class TodoList {
             this.todos = arr;
         }
 
-        fetch(`http://${config.development.host}:${config.development.port}/todos/ids`, {
+        return fetch(`http://${config.development.host}:${config.development.port}/todos/ids`, {
             method: 'delete',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(completedIds)
-        }).then(response => {
-            controller.renderList();
+        }).catch((error) => {
+            console.error('Error:', error);
         });
-        hideButtons();
     }
 
     refreshPage() {
-        fetch(`http://${config.development.host}:${config.development.port}/todos`)
+        return fetch(`http://${config.development.host}:${config.development.port}/todos`)
             .then(response => response.json())
             .then(json => {
                 for (let i = 0; i<json.length; i++) {
                     let data = json[i];
-                    this.todos.push(new Todo(data.taskText, data._id, data.isDone));
-                    controller.renderList(ALL_TASK);
+                    this.todos.push(new Todo(data.taskText, data.id, data.isDone));
                 }
-                hideButtons();
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -92,3 +92,5 @@ class TodoList {
     };
 
 }
+
+export default TodoList;

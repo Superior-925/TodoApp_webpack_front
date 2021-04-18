@@ -1,4 +1,6 @@
-function getRandomIntInclusive(min, max) {
+import controller from "../controllers/controller";
+
+export function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
@@ -8,13 +10,13 @@ function getRandomIntInclusive(min, max) {
 
 let buttons = document.getElementById('buttons');
 
-function hideButtons() {
+export function hideButtons() {
     if (controller.todoList.todos.length == 0) {
         buttons.classList.add('display-style-none');
     }
 }
 
-function showHideButtons() {
+export function showHideButtons() {
     if (controller.todoList.todos.length == 0) {
         buttons.classList.add('display-style-none');
     }
@@ -147,3 +149,6 @@ divOfTask.addEventListener('click', function() {
         item.addEventListener('mousedown', mouseDownHandler);
     });
 });
+
+
+

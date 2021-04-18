@@ -1,0 +1,39 @@
+{
+  "name": "TodoApp_MongoDB_front",
+  "version": "1.0.0",
+  "description": "# This todo app is an example of a notebook. The app allows: - Add tasks to notebook - Delete tasks - Filter tasks - Prioritize tasks for completion - Downloading tasks on the server",
+  "main": "src/config.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "watch": "webpack --mode development --watch",
+    "start": "npx webpack serve --mode development --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Superior-925/TodoApp_MongoDB_front.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Superior-925/TodoApp_MongoDB_front/issues"
+  },
+  "homepage": "https://github.com/Superior-925/TodoApp_MongoDB_front#readme",
+  "devDependencies": {
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "*",
+    "copy-webpack-plugin": "^8.1.1",
+    "css-loader": "^5.2.1",
+    "html-webpack-plugin": "^5.3.1",
+    "mini-css-extract-plugin": "^1.4.1",
+    "node-sass": "^5.0.0",
+    "sass": "^1.32.8",
+    "sass-loader": "^11.0.1",
+    "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.31.2",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
+  }
+}

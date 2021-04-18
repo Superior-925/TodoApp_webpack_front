@@ -1,4 +1,4 @@
-var config = {
+const config = {
   development: {
     host: "localhost",
     port: "5555"
@@ -12,4 +12,6 @@ var config = {
     port: "7777"
   }
 };
+
+export default config;
 

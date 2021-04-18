@@ -1,3 +1,5 @@
+import config from '../config'
+
 class Todo {
     constructor(taskText, id, isDone) {
         this.taskText = taskText;
@@ -7,19 +9,18 @@ class Todo {
 
     changeIsDone(id) {
         // changing 'isDone' value
-        let currentTodo = controller.todoList.findInstanceById(id);
-        currentTodo.isDone = !currentTodo.isDone;
-
+        this.isDone = !this.isDone;
         //request on server
-        fetch(`http://${config.development.host}:${config.development.port}/todos/`+id, {
+        return fetch(`http://${config.development.host}:${config.development.port}/todos/` + id, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({isDone: !currentTodo.isDone})
-        }).then(response => {
-            controller.renderList();
+            body: JSON.stringify({isDone: !this.isDone})
+        }).catch((error) => {
+            console.error('Error:', error);
         });
     }
 }
 
+export default Todo;
