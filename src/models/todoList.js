@@ -27,7 +27,6 @@ class TodoList {
     }
 
     deleteAllTodos() {
-
         this.todos.length = 0;
         return fetch(`http://${config.development.host}:${config.development.port}/todos`, {
             method: 'delete',

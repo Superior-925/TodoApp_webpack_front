@@ -39,8 +39,10 @@ class Controller {
         let deleteAllButton = document.getElementById('delete-all-button');
 
         deleteAllButton.addEventListener('click', () => {
-            this.todoList.deleteAllTodos().then(
-                this.renderList()).then(hideButtons());
+            this.todoList.deleteAllTodos().then(()=> {
+                    this.renderList()
+            }
+                ).then(() => hideButtons());
         });
     }
 
@@ -48,8 +50,8 @@ class Controller {
         // deleting completed records in todos array
         let deleteCompletedButton = document.getElementById('delete-completed-button');
         deleteCompletedButton.addEventListener('click', () => {
-            this.todoList.deleteCompletedTodos().then(
-                this.renderList()).then(hideButtons());
+            this.todoList.deleteCompletedTodos().then(()=>
+                this.renderList()).then(() => hideButtons());
         });
     }
 
