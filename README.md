@@ -19,11 +19,11 @@ The application is written by HTML/CSS/JavaScript/WebPack
  - Clone the repository
 
   ```sh
- git clone https://github.com/Superior-925/TodoApp_webpack_front.git
+ $ git clone https://github.com/Superior-925/TodoApp_webpack_front.git
  ```
  - Go to project folder
   ```sh
- cd TodoApp_webpack_front
+ $ cd TodoApp_webpack_front
  ```
 
  - Install python language
@@ -54,7 +54,7 @@ Go to "dist" directory
  - Launch the applications
  
  ```sh
-python -m SimpleHTTPServer 8000
+$ python -m SimpleHTTPServer 8000
 ```
  - Go to the following link http://localhost:8000
  
