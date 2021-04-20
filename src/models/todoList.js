@@ -34,7 +34,7 @@ class TodoList {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json'
             },
-            body: ''
+            body: JSON.stringify(this.todos)
         }).catch((error) => {
             console.error('Error:', error);
         });
@@ -60,7 +60,7 @@ class TodoList {
             this.todos = arr;
         }
 
-        return fetch(`http://${config.development.host}:${config.development.port}/todos/ids`, {
+        return fetch(`http://${config.development.host}:${config.development.port}/todos`, {
             method: 'delete',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
