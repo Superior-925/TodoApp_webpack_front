@@ -60,16 +60,23 @@ class TodoList {
             this.todos = arr;
         }
 
-        return fetch(`http://${config.development.host}:${config.development.port}/todos`, {
-            method: 'delete',
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(completedIds)
-        }).catch((error) => {
-            console.error('Error:', error);
-        });
+        ////???
+
+        if (completedIds.length === 0) {
+            return Promise.resolve(true)
+        }
+        else if (completedIds.length !== 0){
+            return fetch(`http://${config.development.host}:${config.development.port}/todos`, {
+                method: 'delete',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(completedIds)
+            }).catch((error) => {
+                console.error('Error:', error);
+            });
+        }
     }
 
     refreshPage() {
