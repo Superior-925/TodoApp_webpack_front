@@ -40,9 +40,7 @@ class Controller {
 
         deleteAllButton.addEventListener('click', () => {
             this.todoList.deleteAllTodos().then(()=> {
-                    this.renderList()
-            }
-                ).then(() => hideButtons());
+                    this.renderList()}).then(() => hideButtons());
         });
     }
 
