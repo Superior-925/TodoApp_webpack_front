@@ -60,12 +60,10 @@ class TodoList {
             this.todos = arr;
         }
 
-        ////???
-
         if (completedIds.length === 0) {
             return Promise.resolve(true)
         }
-        else if (completedIds.length !== 0){
+        if (completedIds.length !== 0){
             return fetch(`http://${config.development.host}:${config.development.port}/todos`, {
                 method: 'delete',
                 headers: {
@@ -96,7 +94,6 @@ class TodoList {
     findInstanceById(id) {
         return this.todos.find(todo => todo.id == id);
     };
-
 }
 
 export default TodoList;

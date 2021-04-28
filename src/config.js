@@ -1,7 +1,7 @@
 const config = {
   development: {
     host: "localhost",
-    port: "5555"
+    port: "3030"
   },
   production: {
     host: "devdemo",
